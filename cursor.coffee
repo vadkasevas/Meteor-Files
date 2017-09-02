@@ -1,3 +1,17 @@
+classes = {}
+getClass=(model) ->
+  if not classes[model.constructor.name]
+    Class = class
+      constructor:(_fileRef) ->
+        _.extend @, _fileRef
+
+    _inherits Class, model.constructor
+    _inherits Class, FileCursor
+    _createClass Class, model.constructor
+    classes[model.constructor.name] =  Class
+
+  return classes[model.constructor.name];
+
 ###
 @private
 @locus Anywhere
@@ -7,9 +21,15 @@
 @summary Internal class, represents each record in `FilesCursor.each()` or document returned from `.findOne()` method
 ###
 class FileCursor
-  constructor: (@_fileRef, @_collection) ->
-    self = @
-    self = _.extend self, @_fileRef
+  constructor: (doc,_collection) ->
+    if _collection?.collection?._options?.modelClass
+      clazz = getClass doc;
+      result = new clazz doc
+      Object.defineProperty result, '_fileRef', {value:result,enumerable: false,configurable: false,writable: false}
+      result._collection = _collection
+      return result
+    @_fileRef = doc
+    @_collection=_collection
 
   ###
   @locus Anywhere

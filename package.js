@@ -18,8 +18,11 @@ Package.onUse(function(api) {
   api.use('webapp', 'server');
   api.use(['reactive-var', 'tracker', 'http'], 'client');
   api.use(['mongo', 'underscore', 'check', 'random', 'coffeescript', 'ecmascript', 'ostrio:cookies@2.2.2','malibun23:stack@0.0.17'], ['client', 'server']);
+  api.addFiles(['utils.js'],['client','server']);
   api.addAssets('worker.min.js', 'client');
+
   api.mainModule('server.coffee', 'server');
   api.mainModule('client.coffee', 'client');
+
   api.export('FilesCollection');
 });

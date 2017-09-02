@@ -141,7 +141,6 @@ class FilesCollectionCore
   ###
   link: (fileRef, version = 'original') ->
     @_debug "[FilesCollection] [link(#{fileRef?._id}, #{version})]"
-    check fileRef, Object
     check version, String
     return '' if not fileRef
     return formatFleURL fileRef, version

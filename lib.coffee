@@ -44,7 +44,6 @@ fixJSONStringify = (obj) ->
 @returns {String} Downloadable link
 ###
 formatFleURL = (fileRef, version = 'original') ->
-  check fileRef, Object
   check version, String
 
   root = __meteor_runtime_config__.ROOT_URL.replace(/\/+$/, '')
