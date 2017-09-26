@@ -1,6 +1,6 @@
 Package.describe({
   name: 'malibun23:files',
-  version: '1.8.2',
+  version: '1.8.2_1',
   summary: 'File upload via DDP/HTTP to server FS, AWS, GridFS, DropBox, Google Drive or other 3rd party storage',
   git: 'https://github.com/VeliovGroup/Meteor-Files',
   documentation: 'README.md'
@@ -17,7 +17,7 @@ Package.onUse(function(api) {
   api.versionsFrom('1.4');
   api.use('webapp', 'server');
   api.use(['reactive-var', 'tracker', 'http'], 'client');
-  api.use(['mongo', 'underscore', 'check', 'random', 'coffeescript', 'ecmascript', 'ostrio:cookies@2.2.2','malibun23:stack@0.0.17'], ['client', 'server']);
+  api.use(['mongo', 'underscore', 'check', 'random', 'coffeescript', 'ecmascript', 'ostrio:cookies@2.2.2'], ['client', 'server']);
   api.addFiles(['utils.js'],['client','server']);
   api.addAssets('worker.min.js', 'client');
 
