@@ -12,7 +12,7 @@
 `import Throttle from 'throttle'`
 `import fileType from 'file-type'`
 `import nodePath from 'path'`
-
+npmFs = require 'fs';
 ###
 @var {Object} bound - Meteor.bindEnvironment (Fiber wrapper)
 ###
@@ -168,8 +168,8 @@ class FilesCollection
           self._preCollection.remove {_id: doc._id}, NOOP
         return
       removed: (doc) ->
-        # Free memory after upload is done
-        # Or if upload is unfinished
+# Free memory after upload is done
+# Or if upload is unfinished
         self._debug "[FilesCollection] [_preCollectionCursor.observe] [removed]: #{doc._id}"
         if self._currentUploads?[doc._id]
           self._currentUploads[doc._id].stop()
@@ -933,12 +933,10 @@ class FilesCollection
     check proceedAfterUpload, Match.Optional Boolean
 
     self = @
-    stats = null
-    try stats = fs.fstatSync path
-    catch err
-      return callback and callback err
-
-      if stats.isFile()
+    npmFs.stat path, (error, stats) -> bound ->
+      if error
+        callback and callback error
+      else if stats.isFile()
         opts      ?= {}
         opts.path  = path
 
@@ -978,6 +976,7 @@ class FilesCollection
           return
       else
         callback and callback new Meteor.Error 400, "[FilesCollection] [addFile(#{path})]: File does not exist"
+      return
     return @
 
   ###
