@@ -933,10 +933,12 @@ class FilesCollection
     check proceedAfterUpload, Match.Optional Boolean
 
     self = @
-    fs.stat path, (error, stats) -> bound ->
-      if error
-        callback and callback error
-      else if stats.isFile()
+    stats = null
+    try stats = fs.fstatSync path
+    catch err
+      return callback and callback err
+
+      if stats.isFile()
         opts      ?= {}
         opts.path  = path
 
@@ -976,7 +978,6 @@ class FilesCollection
           return
       else
         callback and callback new Meteor.Error 400, "[FilesCollection] [addFile(#{path})]: File does not exist"
-      return
     return @
 
   ###

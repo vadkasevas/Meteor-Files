@@ -1,6 +1,6 @@
 Package.describe({
   name: 'malibun23:files',
-  version: '1.8.2_1',
+  version: '1.8.2_6',
   summary: 'File upload via DDP/HTTP to server FS, AWS, GridFS, DropBox, Google Drive or other 3rd party storage',
   git: 'https://github.com/VeliovGroup/Meteor-Files',
   documentation: 'README.md'
