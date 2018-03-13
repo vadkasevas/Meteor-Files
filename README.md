@@ -1,4 +1,5 @@
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FVDSXRFW9VGA2)
+[![Mentioned in Awesome ostrio:files](https://awesome.re/mentioned-badge.svg)](https://project-awesome.org/Urigo/awesome-meteor#files)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/VeliovGroup/Meteor-Files)
 [![GitHub issues](https://img.shields.io/github/issues/VeliovGroup/Meteor-Files.svg)](https://github.com/VeliovGroup/Meteor-Files/issues)
 [![GitHub forks](https://img.shields.io/github/forks/VeliovGroup/Meteor-Files.svg)](https://github.com/VeliovGroup/Meteor-Files/network)
@@ -42,7 +43,7 @@ Support:
 
 Support Meteor-Files project:
 ========
- - Try [ostr.io](https://ostr.io) - The toolkit for web-developers. By using [ostr.io](https://ostr.io) you are not only [protecting domain names](https://ostr.io/info/domain-names-protection), [monitoring websites and servers](https://ostr.io/info/monitoring), using [Prerendering for better SEO](https://ostr.io/info/prerendering) of your JavaScript website, but support our Open Source activity, and great packages like this one are available for free.
+ - Try [ostr.io](https://ostr.io) - The toolkit for web-developers. Using [ostr.io](https://ostr.io) you are not only [protecting domain names](https://ostr.io/info/domain-names-protection), [monitoring websites and servers](https://ostr.io/info/monitoring), using [Prerendering for better SEO](https://ostr.io/info/prerendering) of your JavaScript website, but support our Open Source activity, and great packages like this one could be available for free.
  - [Donate via PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FVDSXRFW9VGA2)
  - Star on [GitHub](https://github.com/VeliovGroup/Meteor-Files)
  - Star on [Atmosphere](https://atmospherejs.com/ostrio/files)
@@ -50,7 +51,7 @@ Support Meteor-Files project:
 
 Contribution:
 ========
-All PRs is always welcome on [`dev` branch](https://github.com/VeliovGroup/Meteor-Files/tree/dev). Please, always give expressive description to your changes and additions.
+All PRs are always welcome on [`dev` branch](https://github.com/VeliovGroup/Meteor-Files/tree/dev). Please, always give expressive description to your changes and additions.
 
 Awards:
 ========
@@ -326,6 +327,7 @@ For more expressive example see [Download demo](https://github.com/VeliovGroup/M
 Supporters:
 ========
 We would like to thank everyone who support this project. *Because of those guys this project can have 100% of our attention*.
+ - [@Neophen](https://github.com/Neophen)
  - [@rikyperdana](https://github.com/rikyperdana)
  - [@derwok](https://github.com/derwok), check out his project - [4minitz](https://www.4minitz.com/)
  - [@FinnFrotscher](https://github.com/FinnFrotscher)

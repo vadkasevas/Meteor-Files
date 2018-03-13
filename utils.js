@@ -45,22 +45,3 @@ _inherits=function(subClass, superClass) {
     });
     if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 }
-
-/*
-PhraseFilesCollectionModel = function(_MalibunModel) {
-    _inherits(PhraseFilesCollectionModel, _MalibunModel);
-
-    function PhraseFilesCollectionModel() {
-        return _possibleConstructorReturn(this, (PhraseFilesCollectionModel.__proto__ || Object.getPrototypeOf(PhraseFilesCollectionModel)).apply(this, arguments));
-    }
-
-    _createClass(PhraseFilesCollectionModel, [{
-        key: "asteriskFile",
-        get: function get() {
-            return path.dirname(this.path) + ("/" + this._id + "_asterisk.wav");
-        }
-    }]);
-
-    return PhraseFilesCollectionModel;
-}(MalibunModel);
-    */

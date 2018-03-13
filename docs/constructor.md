@@ -102,7 +102,7 @@
     </tr>
     <tr>
       <td align="right">
-        <code>config.continueUploadTTL</code> {<em>String</em>}
+        <code>config.continueUploadTTL</code> {<em>Number</em>}
       </td>
       <td>
         Server
@@ -166,18 +166,18 @@
     </tr>
     <tr>
       <td align="right">
-        <code>config.throttle</code> {<em>Number</em>|<em>false</em>}
+        <b>DEPRECATED</b> <code>config.throttle</code> {<em>Number</em>|<em>false</em>}
       </td>
       <td>
         Server
       </td>
       <td>
-        Throttle download speed in <em>bps</em>
+        <b>DEPRECATED</b> Throttle download speed in <em>bps</em>
       </td>
+      <td>-</td>
       <td>
-        <code>false</code>
+        TEMPORARILY DEPRECATED SINCE v1.9.0
       </td>
-      <td></td>
     </tr>
     <tr>
       <td align="right">
@@ -354,7 +354,7 @@
         <code>config.protected</code> {<em>Boolean</em>|<em>Function</em>}
       </td>
       <td>
-        Isomorphic
+        Server
       </td>
       <td>
         <em>Control download flow.</em><br>
@@ -369,10 +369,10 @@
         <strong>Context</strong>:
         <ul>
           <li>
-            <code>this.request</code> - On <strong>server only</strong>
+            <code>this.request</code>
           </li>
           <li>
-            <code>this.response</code> - On <strong>server only</strong>
+            <code>this.response</code>
           </li>
           <li>
             <code>this.user()</code>
@@ -691,6 +691,40 @@
         </ul>
       </td>
     </tr>
+    <tr>
+      <td align="right">
+        <code>config.disableUpload</code> {<em>Boolean</em>}
+      </td>
+      <td>
+        Both
+      </td>
+      <td>
+        Disable upload from <em>Client</em> to <em>Server</em> (HTTP and DDP (WebSockets))
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>
+        Use for security reasons when only <em>Server</em> usage is needed
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+        <code>config.disableDownload</code> {<em>Boolean</em>}
+      </td>
+      <td>
+        Server
+      </td>
+      <td>
+        Disable file download from <em>Server</em> to <em>Client</em> (HTTP)
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>
+        Use for security reasons when only upload from <em>Client</em> to <em>Server</em> usage is needed, and files shouldn't be downloaded by any user.
+      </td>
+    </tr>
   </tbody>
 </table>
 
@@ -742,8 +776,6 @@ const Images = new FilesCollection({
   storagePath: 'assets/app/uploads/Images',
   downloadRoute: '/files/images'
   collectionName: 'Images',
-  chunkSize: 1024 * 2048,
-  throttle: 1024 * 512,
   permissions: 0755,
   allowClientCode: false,
   cacheControl: 'public, max-age=31536000',
@@ -789,14 +821,29 @@ export default Images;
 ### Add extra security:
 
 #### Attach schema [*Isomorphic*]:
-*Default schema is stored under* `FilesCollection.schema` *object.*
 
 *To attach schema, use/install [aldeed:collection2](https://github.com/aldeed/meteor-collection2) and [simple-schema](https://atmospherejs.com/aldeed/simple-schema) packages.*
 
-*You're free to modify/overwrite* `FilesCollection.schema` *object.*
 ```jsx
 const Images = new FilesCollection({/* ... */});
 Images.collection.attachSchema(new SimpleSchema(Images.schema));
+```
+
+*You're free to extend the schema to include your own properties. The default schema is stored under* `FilesCollection.schema` *object.*
+
+```jsx
+const mySchema = {
+  ...FilesCollection.schema,
+  myProp: String,
+  myOtherProp: {
+    type: Array
+  }
+};
+const Images = new FilesCollection({
+  /* ... */
+  schema: mySchema
+});
+Images.collection.attachSchema(new SimpleSchema(mySchema));
 ```
 
 #### Deny collection interaction on client [*Server*]:
@@ -907,7 +954,7 @@ const Images = new FilesCollection({
       // check real mimetype
       const { Magic, MAGIC_MIME_TYPE } = require('mmmagic');
       const magic = new Magic(MAGIC_MIME_TYPE);
-      magic.detectFile(file.path, Meteor.bindEnvironment((err, mimetype) => {
+      magic.detectFile(file.path, Meteor.bindEnvironment((err, mimeType) => {
         if (err || !~mimeType.indexOf('image')) {
           // is not a real image --> delete
           console.log('onAfterUpload, not an image: ', file.path);

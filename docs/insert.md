@@ -42,6 +42,28 @@
     </tr>
     <tr>
       <td align="right">
+        <code>settings.fileId</code> {<em>String</em>}
+      </td>
+      <td>
+        Explicitly set the fileId for the file
+      </td>
+      <td>
+        This is an optionnal parameters <code>Random.id()</code> will be used otherwise
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+        <code>settings.fileName</code> {<em>String</em>}
+      </td>
+      <td>
+        [REQUIRED] <strong>only</strong> for <code>base64</code> uploads
+      </td>
+      <td>
+        For regular uploads this option is [OPTIONAL], will replace default file's name provided in HTML5 <code>files</code> item
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
         <code>settings.isBase64</code> {<em>Boolean</em>}
       </td>
       <td>
