@@ -17,7 +17,7 @@ Package.onUse(function(api) {
   api.versionsFrom('1.6.1');
   api.use('webapp', 'server');
   api.use(['reactive-var', 'tracker', 'http'], 'client');
-  api.use(['mongo', 'underscore', 'check', 'random', 'coffeescript', 'ecmascript', 'ostrio:cookies@2.2.2'], ['client', 'server']);
+  api.use(['mongo', 'underscore', 'check', 'random', 'coffeescript', 'ecmascript', 'ostrio:cookies@2.2.4'], ['client', 'server']);
   api.addFiles(['utils.js'],['client','server']);
   api.addAssets('worker.min.js', 'client');
 
