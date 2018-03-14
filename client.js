@@ -190,7 +190,7 @@ export class FilesCollection extends FilesCollectionCore {
    */
   _getMimeType(fileData) {
     let mime;
-    check(fileData, Object);
+    //check(fileData, Object);
     if (_.isObject(fileData)) {
       mime = fileData.type;
     }

@@ -261,7 +261,7 @@ export default class FilesCollectionCore extends EventEmitter {
    */
   link(fileRef, version = 'original') {
     this._debug(`[FilesCollection] [link(${(_.isObject(fileRef) ? fileRef._id : undefined)}, ${version})]`);
-    check(fileRef, Object);
+    //check(fileRef, Object);
     check(version, String);
 
     if (!fileRef) {
