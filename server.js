@@ -911,7 +911,13 @@ export class FilesCollection extends FilesCollectionCore {
         this._preCollection.update({_id: opts.fileId}, {$set: {isFinished: true}});
         result._id = _id;
         this._debug(`[FilesCollection] [Upload] [finish(ed)Upload] -> ${result.path}`);
-        this.onAfterUpload && this.onAfterUpload.call(this, result);
+        try {
+            this.onAfterUpload && this.onAfterUpload.call(this, result);
+        }catch (e) {
+            this._debug(`[FilesCollection] [Upload] [finish(ed)Upload] Error`,e);
+            cb && cb(e);
+            return;
+        }
         this.emit('afterUpload', result);
         cb && cb(null, result);
       }
@@ -1085,11 +1091,17 @@ export class FilesCollection extends FilesCollectionCore {
             this._debug(`[FilesCollection] [write] [insert] Error: ${fileName} -> ${this.collectionName}`, insertErr);
           } else {
             const fileRef = this.collection.findOne(_id);
-            callback && callback(null, fileRef);
             if (proceedAfterUpload === true) {
-              this.onAfterUpload && this.onAfterUpload.call(this, fileRef);
+                try {
+                    this.onAfterUpload && this.onAfterUpload.call(this, fileRef);
+                }catch(e){
+                    this._debug(`[FilesCollection] [write] [onAfterUpload] Error: ${fileName} -> ${this.collectionName}`, e);
+                    callback && callback(e);
+                    return;
+                }
               this.emit('afterUpload', fileRef);
             }
+            callback && callback(null, fileRef);
             this._debug(`[FilesCollection] [write]: ${fileName} -> ${this.collectionName}`);
           }
         });
