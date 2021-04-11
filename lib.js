@@ -60,12 +60,12 @@ const fixJSONStringify = function(obj) {
  * @summary Returns formatted URL for file
  * @returns {String} Downloadable link
  */
-const formatFleURL = (fileRef, version = 'original') => {
+const formatFleURL = (fileRef, options='original') => {
   let ext;
-  //check(fileRef, Object);
-  check(version, String);
-
-  const _root = __meteor_runtime_config__.ROOT_URL.replace(/\/+$/, '');
+  let version = 'original';
+  if (_.isString(options))
+    version = options;
+  const _root = !_.isString(options) && options.ROOT_URL ? options.ROOT_URL :  __meteor_runtime_config__.ROOT_URL.replace(/\/+$/, '');
   const vRef = (fileRef.versions && fileRef.versions[version]) || fileRef || {};
 
   if (_.isString(vRef.extension)) {

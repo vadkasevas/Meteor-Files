@@ -259,14 +259,10 @@ export default class FilesCollectionCore extends EventEmitter {
    * @summary Returns downloadable URL
    * @returns {String} Empty string returned in case if file not found in DB
    */
-  link(fileRef, version = 'original') {
-    this._debug(`[FilesCollection] [link(${(_.isObject(fileRef) ? fileRef._id : undefined)}, ${version})]`);
-    //check(fileRef, Object);
-    check(version, String);
-
+  link(fileRef, options = 'original') {
     if (!fileRef) {
       return '';
     }
-    return formatFleURL(fileRef, version);
+    return formatFleURL(fileRef, options);
   }
 }

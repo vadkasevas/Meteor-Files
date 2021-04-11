@@ -66,7 +66,7 @@ export class FileCursor {
    * @returns {String}
    */
   link(version = 'original') {
-    this._collection._debug(`[FilesCollection] [FileCursor] [link(${version})]`);
+    //this._collection._debug(`[FilesCollection] [FileCursor] [link(${version})]`);
     if (this._fileRef) {
       return this._collection.link(this._fileRef, version);
     }
